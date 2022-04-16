@@ -6,7 +6,7 @@ import java.util.Collections;
 public class Median {
     public static void main(String[] args) {
         int size = args.length;
-        ArrayList<Double> list = new ArrayList<Double>();
+        ArrayList<Double> list = new ArrayList<>();
         for (String arg : args) {
             list.add(Double.parseDouble(arg));
         }

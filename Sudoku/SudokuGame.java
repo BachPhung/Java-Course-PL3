@@ -15,7 +15,7 @@ public class SudokuGame {
     for (int i = 0; i < this.ROW; i++) {
       Character[] charTemp = new Character[9];
       for (int j = 0; j < this.COL; j++) {
-        charTemp[j] = ' ';
+        charTemp[j] = '.';
       }
       grid.add(charTemp);
     }
@@ -68,10 +68,30 @@ public class SudokuGame {
           }
         }
       }
+      return true;
     } catch (Exception e) {
       System.out.println(e.getMessage());
       return false;
     }
-    return true;
+  }
+
+  public void print() {
+    for (int i = 0; i <= ROW + 1; i++) {
+      for (int j = 0; j < COL; j++) {
+        if (i == 0 || i == ROW + 1) {
+          System.out.print("##");
+          if(j == COL - 1){
+            System.out.print("###");
+          }
+        } else if (j == 0) {
+          System.out.printf("# %c", this.grid.get(i - 1)[j]);
+        } else if (j == COL - 1) {
+          System.out.printf(" %c #", this.grid.get(i - 1)[j]);
+        } else {
+          System.out.printf(" %c", this.grid.get(i - 1)[j]);
+        }
+      }
+      System.out.println();
+    }
   }
 }
