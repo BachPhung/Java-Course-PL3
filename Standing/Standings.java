@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Standings {
   private ArrayList<Team> teams = new ArrayList<>();
 
-  public Standings() {};
+  public Standings() {}
 
   public Standings(String filename) throws IOException {
     this.readMatchData(filename);
@@ -25,14 +25,12 @@ public class Standings {
     Team teamB;
     if (teamFilterA.isEmpty()) {
       teamA = new Team(teamNameA);
-    }
-    else {
+    } else {
       teamA = teamFilterA.get(0);
     }
     if (teamFilterB.isEmpty()) {
       teamB = new Team(teamNameB);
-    }
-    else {
+    } else {
       teamB = teamFilterB.get(0);
     }
     if (goalsA > goalsB) {
@@ -54,10 +52,10 @@ public class Standings {
     teamA.allowed += goalsB;
     teamB.score += goalsB;
     teamB.allowed += goalsA;
-    if(teamFilterA.isEmpty()){
+    if (teamFilterA.isEmpty()) {
       this.teams.add(teamA);
     }
-    if(teamFilterB.isEmpty()){
+    if (teamFilterB.isEmpty()) {
       this.teams.add(teamB);
     }
   }
@@ -87,11 +85,12 @@ public class Standings {
 
   public void printStandings() {
     List<Team> teamsReturned = this.getTeams();
-    teamsReturned.sort((a,b)->(a.point<b.point) ? 1 : (a.point > b.point ? -1 
-    : ((a.score - a.allowed < b.score - b.allowed)? 1 
-    : ((a.score - a.allowed > b.score - b.allowed) ? -1 
-    : (b.name.compareToIgnoreCase(a.name))))));
-    for (int i = 0; i < teamsReturned.size();i++) {
+    teamsReturned.sort((a, b) -> (a.point < b.point) ? 1
+      : (a.point > b.point ? -1
+        : ((a.score - a.allowed < b.score - b.allowed) ? 1
+          : ((a.score - a.allowed > b.score - b.allowed) ? -1
+            : (b.name.compareToIgnoreCase(a.name))))));
+    for (int i = 0; i < teamsReturned.size(); i++) {
       Team a = this.teams.get(i);
       System.out.printf("%-19s   %2d   %2d   %2d   %2d   %2d-%-2d   %2d%n", a.name, a.win + a.loss + a.tie,
           a.win, a.tie, a.loss, a.score, a.allowed, a.point);
@@ -141,7 +140,5 @@ public class Standings {
     int getPoints() {
       return this.point;
     }
-
   }
-
 }
